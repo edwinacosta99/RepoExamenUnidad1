@@ -1,0 +1,39 @@
+// Definir la clase Persona
+class Persona {
+  String nombre;
+  int edad;
+  String? _dni; // propiedad privada para dni
+
+  // Constructor con nombre que acepta un JSON como argumento
+  Persona.fromJson(Map<String, dynamic> json)
+      : nombre = json['nombre'],
+        edad = json['edad'],
+        _dni = json['dni'];
+
+  // Método saludar
+  void saludar() {
+    print('Hola, mi nombre es $nombre y tengo $edad años');
+  }
+
+  // Getter para dni
+  String? get dni => _dni;
+
+  // Setter para dni
+  set dni(String? value) {
+    _dni = value;
+  }
+}
+
+// Función crearPersona
+Persona crearPersona({required String nombre, required int edad, String? dni}) {
+  return Persona.fromJson({'nombre': nombre, 'edad': edad, 'dni': dni});
+}
+
+// Método main
+void main() {
+  // Crear una instancia de Persona utilizando la función crearPersona
+  Persona persona1 = crearPersona(nombre: 'Josue', edad: 25, dni: '1804199900938');
+  
+  // Llamar al método saludar
+  persona1.saludar();
+}
